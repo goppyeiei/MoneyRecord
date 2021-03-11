@@ -1,17 +1,53 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+    <ion-title> Expenditure </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-header collapse="condense">
+  <ion-toolbar>
+    <ion-title size="large">Expenditure</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="false">
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-label *ngFor="let i of this.allData">
+
+    <ion-item-sliding>
+
+      <ion-item-options side="end">
+        <ion-item-option color="tertiary"  (click)="EDIT(i)" expandable>
+          <ion-icon name="pencil"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="DEL(i)" expandable>
+          <ion-icon name="trash-bin"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item>
+        <ion-icon class="color" name="arrow-up-outline"></ion-icon>
+        <ion-label>
+          <h2>{{i.name}}</h2>
+          <p>{{i.datetime}}</p>
+        </ion-label>
+        <h1 class="color" slot="end">{{i.amount}} Baht</h1>
+      </ion-item>
+
+    </ion-item-sliding>
+
+  </ion-label>
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="danger">
+    <ion-text>
+      <h3>  Total : {{sumAmount}} </h3>
+    </ion-text>
+    <ion-buttons slot="end" (click)="ADD()">
+      <ion-button>
+        <ion-icon name="add-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
